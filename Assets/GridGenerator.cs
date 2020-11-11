@@ -60,11 +60,6 @@ public class GridGenerator : EditorWindow
             Debug.Log("Updateing borders");
             UpdateBorders();
         }
-
-        if (GUILayout.Button("Get Kingdom"))
-        {
-            grid.GetComponent<GridController>().GetKingdom();
-        }
     }
 
     private int[,] array = new int[Constants.gridSizeX, Constants.gridSizeY];

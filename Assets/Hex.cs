@@ -1,35 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-[ExecuteInEditMode]
-public class Hex : MonoBehaviour
+[System.Serializable]
+public class Hex
 {
-    [SerializeField]
-    private SpriteRenderer sr;
+    public Hextypes currentHexType;
+
+    public int x;
+
+    public int y;
 
     [SerializeField]
-    private Hextypes _hexType;
+    protected int movementCost;
 
-    private Hextypes currentHexType;
+    [SerializeField]
+    protected int currentKingdomId;
+
+    public bool isWalkable = true;
 
     public Hextypes HexType
     {
-        get { return _hexType; }
-    }    // Start is called before the first frame update
+        get { return currentHexType; }
+    }    
+
     void Start()
     {
-        currentHexType = Hextypes.Water;
-        sr.sprite = Resources.Load<Sprite>("Sprites/Hexes/" + currentHexType.ToString());
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnMouseUp()
     {
-        if (currentHexType != _hexType)
-        {
-            currentHexType = _hexType;
-            sr.sprite = Resources.Load<Sprite>("Sprites/Hexes/" + currentHexType.ToString());
-        }
+        Debug.Log("Click!");
+
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        Debug.Log("Generating!");
+        //map.GeneratePathTo(x, y);
     }
 }

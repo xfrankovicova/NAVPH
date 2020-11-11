@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,19 @@ public static class Constants
         { SoldiersType.Pesant, new SoldierStats(20, 0, 10, 10, 20, 5, 60, 0, 1, 8, 25) },
         { SoldiersType.Spearman, new SoldierStats(20, 2, 40, 25, 40, 8, 75, 0, 1, 6, 30) }
         //{ SoldiersType., new SoldierStats() }
+    };
+
+    public static Dictionary<Hextypes, float> costToEnter = new Dictionary<Hextypes, float>() {
+        { Hextypes.Water, Mathf.Infinity},
+        { Hextypes.Grassland, 1f},
+        { Hextypes.City, 1f},
+        { Hextypes.Castle, 1f},
+        { Hextypes.Village, 1f},
+        { Hextypes.Mountain_Big, Mathf.Infinity},
+        { Hextypes.Mountain_Small, Mathf.Infinity},
+        { Hextypes.Forrest, 2f},
+        { Hextypes.Mine, 3f},
+        { Hextypes.Field, 1.5f}
     };
 }
 

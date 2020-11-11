@@ -28,6 +28,9 @@ public class Hexagon : MonoBehaviour
     [SerializeField]
     private GameObject[] borders = new GameObject[6];
 
+    [SerializeField]
+    private Dictionary<int, int> dic;
+
 
     public Hextypes HexType { get { return _hexType; }
     }
@@ -79,6 +82,17 @@ public class Hexagon : MonoBehaviour
         name = "Hex [" + x.ToString() + ", " + y.ToString() + "]";
         Debug.Log(name + "type: " + type.ToString() + "currentType: " + currentHexType.ToString());
 
+    }
+
+    void OnMouseUp()
+    {
+        Debug.Log("Click!");
+
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        Debug.Log("Generating!");
+        GridController.Instance.GeneratePathTo(x, y);
     }
 
     void Update()
