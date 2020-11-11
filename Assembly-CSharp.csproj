@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Brush.cs" />
-    <Compile Include="Assets\ClickableTile.cs" />
     <Compile Include="Assets\Constants.cs" />
     <Compile Include="Assets\GridController.cs" />
     <Compile Include="Assets\GridGenerator.cs" />
@@ -74,7 +73,6 @@
     <Compile Include="Assets\Hexagon.cs" />
     <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Node.cs" />
-    <Compile Include="Assets\PrintAwake.cs" />
     <Compile Include="Assets\RTS_Camera\Demo\DemoScene.cs" />
     <Compile Include="Assets\RTS_Camera\Demo\TargetSelector.cs" />
     <Compile Include="Assets\RTS_Camera\Scripts\RTS_Camera.cs" />
@@ -83,8 +81,6 @@
     <Compile Include="Assets\Scripts\Soldier.cs" />
     <Compile Include="Assets\Scripts\Spearman.cs" />
     <Compile Include="Assets\TestScript.cs" />
-    <Compile Include="Assets\TileMap.cs" />
-    <Compile Include="Assets\TileType.cs" />
     <Compile Include="Assets\Unit.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
