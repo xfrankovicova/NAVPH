@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -158,182 +159,25 @@ public class Hexagon : MonoBehaviour
         }
     }
 
-    public List<Hexagon> GetNeighbours(bool iMyKingdom = false) 
+    public List<Hexagon> GetNeighbours() 
     {
-        List<Hexagon> neighbours = new List<Hexagon>();
-        //get left
-        if (x - 1 >= 0)
+        var v = (x % 2 == 0) ? Constants.neighboursEven : Constants.neighboursOdd;
+
+        List<Hexagon> result = new List<Hexagon>();
+        foreach (var item in v)
         {
-            neighbours.Add(GridController.Instance.Grid[x - 1, y]);
-        }      
-        //get right 
-        if (x + 1 < Constants.gridSizeX)
-        {
-            neighbours.Add(GridController.Instance.Grid[x + 1, y]);
-        }
-        //get down 
-        if (y - 1 >= 0)
-        {
-            neighbours.Add(GridController.Instance.Grid[x, y - 1]);
-        }
-        //get up 
-        if (y + 1 < Constants.gridSizeY)
-        {
-            neighbours.Add(GridController.Instance.Grid[x, y + 1]);
-        }
-        //if even
-        if (x % 2 == 0)
-        {
-            if (x - 1 >= 0 && y + 1 < Constants.gridSizeY)
+            var i = item.Key.Item1 + x;
+            var j = item.Key.Item2 + y;
+            if (!(i < 0 || i >= Constants.gridSizeX || j < 0 || j >= Constants.gridSizeY))
             {
-                neighbours.Add(GridController.Instance.Grid[x - 1, y + 1]);
-            }
-            if (x + 1 < Constants.gridSizeX && y + 1 < Constants.gridSizeY)
-            {
-                neighbours.Add(GridController.Instance.Grid[x + 1, y + 1]);
-            }
-        }
-        else
-        {
-            if (x - 1 >= 0 && y - 1 >= 0)
-            {
-                neighbours.Add(GridController.Instance.Grid[x - 1, y - 1]);
-            }
-            if (x + 1 < Constants.gridSizeX && y - 1 >= 0)
-            {
-                neighbours.Add(GridController.Instance.Grid[x + 1, y - 1]);
+                result.Add(GridController.Instance.Grid[i, j]);
             }
         }
 
-        if (iMyKingdom)
-        {
-            List<Hexagon> MKneighbours = new List<Hexagon>();
-            foreach (var item in neighbours)
-            {
-                if (item.currentKingdomId == currentKingdomId)
-                {
-                    MKneighbours.Add(item);
-                }
-            }
-
-            return MKneighbours;
-        }
-        return neighbours;
-    }
-
-    public List<Hexagon> getMyKingdom() 
-    {
-        List<Hexagon> kingdom = new List<Hexagon>();
-        kingdom.Add(this);
-        List<Hexagon> newNeighbours = GetNeighbours(true);
-        List<Hexagon> realyNewNeighbours = new List<Hexagon>();
-
-        foreach (var item in newNeighbours)
-        {
-            if (!kingdom.Contains(item))
-                realyNewNeighbours.Add(item);
-        }
-
-        while (realyNewNeighbours.Count != 0) 
-        {
-            kingdom.AddRange(realyNewNeighbours);
-
-            newNeighbours.RemoveRange(0, newNeighbours.Count);
-            foreach (var item in realyNewNeighbours)
-            {
-                newNeighbours.AddRange(item.GetNeighbours(true));
-            }
-
-            realyNewNeighbours.RemoveRange(0, realyNewNeighbours.Count);
-
-            foreach (var item in newNeighbours)
-            {
-                if (!kingdom.Contains(item))
-                    realyNewNeighbours.Add(item);
-            }
-        }
-        return kingdom;
+        return result;
     }
 
     public void UpdateBorders() {
-        //get down 
-        if (y - 1 >= 0)
-        {
-            if (GridController.Instance.Grid[x, y - 1].currentKingdomId == currentKingdomId)
-                borders[3].SetActive(false);
-            else
-                borders[3].SetActive(true);
-        }
-        //get up 
-        if (y + 1 < Constants.gridSizeY)
-        {
-            if (GridController.Instance.Grid[x, y + 1].currentKingdomId == currentKingdomId)
-                borders[0].SetActive(false);
-            else
-                borders[0].SetActive(true);
-        }
-        if (x % 2 == 0)
-        {
-            if (x - 1 >= 0)
-            {
-                if (GridController.Instance.Grid[x - 1, y].currentKingdomId == currentKingdomId)
-                    borders[4].SetActive(false);
-                else
-                    borders[4].SetActive(true);
-            }
-            if (x - 1 >= 0 && y + 1 < Constants.gridSizeY)
-            {
-                if(GridController.Instance.Grid[x - 1, y + 1].currentKingdomId == currentKingdomId)
-                    borders[5].SetActive(false);
-                else
-                    borders[5].SetActive(true);
-            }
-            if (x + 1 < Constants.gridSizeX)
-            {
-                if(GridController.Instance.Grid[x + 1, y].currentKingdomId == currentKingdomId)
-                    borders[2].SetActive(false);
-                else
-                    borders[2].SetActive(true);
-            }
-            if (x + 1 < Constants.gridSizeX && y + 1 < Constants.gridSizeY)
-            {
-                if(GridController.Instance.Grid[x + 1, y + 1].currentKingdomId == currentKingdomId)
-                    borders[1].SetActive(false);
-                else
-                    borders[1].SetActive(true);
-            }
-        }
-        else
-        {
-            if (x - 1 >= 0)
-            {
-                if (GridController.Instance.Grid[x - 1, y].currentKingdomId == currentKingdomId)
-                    borders[5].SetActive(false);
-                else
-                    borders[5].SetActive(true);
-            }
-            if (x - 1 >= 0 && y - 1 >= 0)
-            {
-                if (GridController.Instance.Grid[x - 1, y - 1].currentKingdomId == currentKingdomId)
-                    borders[4].SetActive(false);
-                else
-                    borders[4].SetActive(true);
-            }
-            if (x + 1 < Constants.gridSizeX)
-            {
-                if (GridController.Instance.Grid[x + 1, y].currentKingdomId == currentKingdomId)
-                    borders[1].SetActive(false);
-                else
-                    borders[1].SetActive(true);
-            }
-            if (x + 1 < Constants.gridSizeX && y - 1 >= 0)
-            {
-                if (GridController.Instance.Grid[x + 1, y - 1].currentKingdomId == currentKingdomId)
-                    borders[2].SetActive(false);
-                else
-                    borders[2].SetActive(true);
-            }
-        }
         if (currentKingdomId == -1)
         {
             borders[0].SetActive(false);
@@ -342,6 +186,22 @@ public class Hexagon : MonoBehaviour
             borders[3].SetActive(false);
             borders[4].SetActive(false);
             borders[5].SetActive(false);
+            return;
+        }
+        var v = (x % 2 == 0) ? Constants.neighboursEven : Constants.neighboursOdd;
+        foreach (var item in v)
+        {
+            if (!(item.Key.Item1 + x < 0 || item.Key.Item1 + x >= Constants.gridSizeX || item.Key.Item2 +y < 0 || item.Key.Item2 +y>= Constants.gridSizeY))
+            {
+                if (GridController.Instance.Grid[x + item.Key.Item1, y + item.Key.Item2].currentKingdomId == currentKingdomId)
+                    borders[item.Value].SetActive(false);
+                else
+                    borders[item.Value].SetActive(true);
+            }
+            else
+            {
+                borders[item.Value].SetActive(true);
+            }
         }
     }
 }

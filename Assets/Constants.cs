@@ -26,6 +26,25 @@ public static class Constants
         { Hextypes.Mine, 3f},
         { Hextypes.Field, 1.5f}
     };
+
+    public static Dictionary<Tuple<int, int>, int> neighboursEven = new Dictionary<Tuple<int, int>, int>() {
+        { new Tuple<int, int>( -1, 0), 4},
+        { new Tuple<int, int>( 1, 0), 2},
+        { new Tuple<int, int>( 0, -1), 3},
+        { new Tuple<int, int>( 0, 1), 0},
+        { new Tuple<int, int>( -1, 1), 5},
+        { new Tuple<int, int>( 1, 1), 1}
+    };
+
+    public static Dictionary<Tuple<int, int>, int> neighboursOdd = new Dictionary<Tuple<int, int>, int>() {
+        { new Tuple<int, int>( -1, 0), 5},
+        { new Tuple<int, int>( 1, 0), 1},
+        { new Tuple<int, int>( 0, -1), 3},
+        { new Tuple<int, int>( 0, 1), 0},
+        { new Tuple<int, int>( -1, -1), 4},
+        { new Tuple<int, int>( 1, -1), 2}
+    };
+
 }
 
 public enum Hextypes

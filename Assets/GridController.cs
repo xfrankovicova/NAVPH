@@ -70,55 +70,17 @@ public class GridController : MonoBehaviour
 			}
 		}
 
+		// Now that all the nodes exist, calculate their neighbours
 		for (int x = 0; x < Constants.gridSizeX; x++)
 		{
-            for (int y = 0; y < Constants.gridSizeY; y++)
-            {
-				if (x - 1 >= 0)
-				{
-					graph[x, y].neighbours.Add(graph[x - 1, y]);
-				}
-				//get right 
-				if (x + 1 < Constants.gridSizeX)
-				{
-					graph[x, y].neighbours.Add(graph[x + 1, y]);
-				}
-				//get down 
-				if (y - 1 >= 0)
-				{
-					graph[x, y].neighbours.Add(graph[x, y - 1]);
-				}
-				//get up 
-				if (y + 1 < Constants.gridSizeY)
-				{
-					graph[x, y].neighbours.Add(graph[x, y + 1]);
-				}
-				//if even
-				if (x % 2 == 0)
-				{
-					if (x - 1 >= 0 && y + 1 < Constants.gridSizeY)
-					{
-						graph[x, y].neighbours.Add(graph[x - 1, y + 1]);
-					}
-					if (x + 1 < Constants.gridSizeX && y + 1 < Constants.gridSizeY)
-					{
-						graph[x, y].neighbours.Add(graph[x + 1, y + 1]);
-					}
-				}
-				else
-				{
-					if (x - 1 >= 0 && y - 1 >= 0)
-					{
-						graph[x, y].neighbours.Add(graph[x - 1, y - 1]);
-					}
-					if (x + 1 < Constants.gridSizeX && y - 1 >= 0)
-					{
-						graph[x, y].neighbours.Add(graph[x + 1, y - 1]);
-					}
-				}
-            }
-        }
-    }
+			for (int y = 0; y < Constants.gridSizeY; y++)
+			{
+				var v = graph[x, y].GetNeighboursIndexes();
+				foreach (var item in v)
+					graph[x, y].neighbours.Add(graph[item.Item1, item.Item2]);
+			}
+		}
+	}
 
 	public GameObject selectedUnit;
 	public bool UnitCanEnterTile(int x, int y)
