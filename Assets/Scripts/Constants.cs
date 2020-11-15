@@ -17,14 +17,14 @@ public static class Constants
     public static Dictionary<Hextypes, float> costToEnter = new Dictionary<Hextypes, float>() {
         { Hextypes.Water, Mathf.Infinity},
         { Hextypes.Grassland, 1f},
-        { Hextypes.City, 1f},
-        { Hextypes.Castle, 1f},
-        { Hextypes.Village, 1f},
+        { Hextypes.City, 2f},
+        { Hextypes.Castle, 2f},
+        { Hextypes.Village, 2f},
         { Hextypes.Mountain_Big, Mathf.Infinity},
         { Hextypes.Mountain_Small, Mathf.Infinity},
-        { Hextypes.Forrest, 2f},
-        { Hextypes.Mine, 3f},
-        { Hextypes.Field, 1.5f}
+        { Hextypes.Forrest, 4f},
+        { Hextypes.Mine, 7f},
+        { Hextypes.Field, 3f}
     };
 
     public static List<Tuple<int, int>> nodeNeighboursEven = new List<Tuple<int, int>>() {
