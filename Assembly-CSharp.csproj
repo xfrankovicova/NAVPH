@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\Army\Soldier.cs" />
     <Compile Include="Assets\Scripts\Army\Spearman.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
+    <Compile Include="Assets\Scripts\Kingdom\Kingdom.cs" />
+    <Compile Include="Assets\Scripts\Kingdom\KingdomController.cs" />
     <Compile Include="Assets\Scripts\Map\Character.cs" />
     <Compile Include="Assets\Scripts\Map\GridController.cs" />
     <Compile Include="Assets\Scripts\Map\Hex.cs" />
