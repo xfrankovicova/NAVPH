@@ -19,7 +19,6 @@ public class Hexagon : MonoBehaviour
     [SerializeField]
     private int y;
 
-    [SerializeField]
     private int _kingdomId = -1;
 
     [SerializeField]
@@ -29,8 +28,7 @@ public class Hexagon : MonoBehaviour
     private GameObject[] borders = new GameObject[6];
 
 
-    public Hextypes HexType { get { return _hexType; }
-    }
+    public Hextypes HexType { get { return _hexType; } }
 
     public int CurrentKingdomId { get => currentKingdomId;}
 
