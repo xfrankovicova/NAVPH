@@ -204,4 +204,14 @@ public class Hexagon : MonoBehaviour
             }
         }
     }
+
+    public void SetBorderMat(Material mat) 
+    {
+        borders[0].GetComponent<MeshRenderer>().material = mat;
+        borders[1].GetComponent<MeshRenderer>().material = mat;
+        borders[2].GetComponent<MeshRenderer>().material = mat;
+        borders[3].GetComponent<MeshRenderer>().material = mat;
+        borders[4].GetComponent<MeshRenderer>().material = mat;
+        borders[5].GetComponent<MeshRenderer>().material = mat;
+    }
 }

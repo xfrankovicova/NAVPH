@@ -44,15 +44,18 @@ public class GridController : MonoBehaviour
             for (int j = 0; j < column.transform.childCount; j++)
             {
                 grid[i, j] = column.transform.GetChild(j).GetComponent<Hexagon>();
-            }
+				KingdomController.Instance.AssignHex(grid[i, j]);
+			}
         }
 
+
+		KingdomController.Instance.UpdateBorders();
 		GeneratePathfindingGraph();
 	}
 
-	#region Pathfinding
+    #region Pathfinding
 
-	Node[,] graph;
+    Node[,] graph;
 
 	void GeneratePathfindingGraph()
 	{

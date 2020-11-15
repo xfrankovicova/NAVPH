@@ -27,6 +27,25 @@ public static class Constants
         { Hextypes.Field, 1.5f}
     };
 
+    public static List<Tuple<int, int>> nodeNeighboursEven = new List<Tuple<int, int>>() {
+        { new Tuple<int, int>( -1, 0)},
+        { new Tuple<int, int>( 1, 0)},
+        { new Tuple<int, int>( 0, -1)},
+        { new Tuple<int, int>( 0, 1)},
+        { new Tuple<int, int>( -1, 1)},
+        { new Tuple<int, int>( 1, 1)}
+    };
+
+    public static List<Tuple<int, int>> nodeNeighboursOdd = new List<Tuple<int, int>>() {
+        { new Tuple<int, int>( -1, 0)},
+        { new Tuple<int, int>( 1, 0)},
+        { new Tuple<int, int>( 0, -1)},
+        { new Tuple<int, int>( 0, 1)},
+        { new Tuple<int, int>( -1, 1)},
+        { new Tuple<int, int>( 1, 1)}
+    };
+
+
     public static Dictionary<Tuple<int, int>, int> neighboursEven = new Dictionary<Tuple<int, int>, int>() {
         { new Tuple<int, int>( -1, 0), 4},
         { new Tuple<int, int>( 1, 0), 2},
