@@ -21,6 +21,7 @@ public class GridGenerator : EditorWindow
         hexPrefab = Resources.Load<GameObject>("GridGenerator/Hexagon");
         gridPrefab = Resources.Load<GameObject>("GridGenerator/Grid");
         collumnHolder = Resources.Load<GameObject>("GridGenerator/Collumn");
+        data = Resources.Load<MapData>("GameState");
 
         grid = GameObject.FindGameObjectWithTag("Main grid");
         if (grid == null)
@@ -62,9 +63,7 @@ public class GridGenerator : EditorWindow
         }
     }
 
-
-    private int[,] array = new int[Constants.gridSizeX, Constants.gridSizeY];
-    private int[,] kingdomArray = new int[Constants.gridSizeX, Constants.gridSizeY];
+    private MapData data;
     private GameObject grid;
 
     [SerializeField] private GameObject hexPrefab;
@@ -109,8 +108,8 @@ public class GridGenerator : EditorWindow
             float y = i + (!iEven ? 0 : xOffsetOddRow);
             GameObject go = GameObject.Instantiate(hexPrefab, new Vector3(x, y, 0.0f), Quaternion.Euler(-90, 0, 0));
             go.transform.SetParent(collumn.transform);
-            Debug.Log(array[iRow, i]);
-            go.GetComponent<Hexagon>().Initialize((Hextypes) array[iRow, i], kingdomArray[iRow, i], iRow, i);
+            Debug.Log(data.mapTypes[iRow, i]);
+            go.GetComponent<Hexagon>().Initialize(data.mapTypes[iRow, i], data.mapKingdoms[iRow, i], iRow, i);
         }
     }
 
@@ -122,50 +121,17 @@ public class GridGenerator : EditorWindow
             for (int j = 0; j < column.transform.childCount; j++)
             {
                 var hex = column.transform.GetChild(j).GetComponent<Hexagon>();
-                array[i, j] = (int)hex.HexType;
-                kingdomArray[i, j] = hex.CurrentKingdomId;
+                data.mapTypes[i, j] = hex.HexType;
+                data.mapKingdoms[i, j] = hex.CurrentKingdomId;
             }
         }
-        var swh = new System.IO.StreamWriter("hextypes.txt");
-        var swk = new System.IO.StreamWriter("kingdoms.txt");
-            for (int i = 0; i < Constants.gridSizeX; i++)
-            {
-                for (int j = 0; j < Constants.gridSizeY; j++)
-                {
-                    swh.Write(array[i, j] + " ");
-                    swk.Write(kingdomArray[i, j] + " ");
-                }
-                swh.Write("\n");
-                swk.Write("\n");
-            }
-
-        swh.Flush();
-        swh.Close(); 
-        swk.Flush();
-        swk.Close();
-        Debug.Log(array.ToString());
+        Debug.Log(data.mapTypes);
+        Debug.Log(data.mapKingdoms);
     }
 
     public void LoadGrid() 
     {
-        var swh = new System.IO.StreamReader("hextypes.txt");
-        var swk = new System.IO.StreamReader("kingdoms.txt");
-        {
-            string[] hexNumbers = Regex.Split(swh.ReadToEnd(), @"\D+");
-            string[] kingdomNumbers = Regex.Split(swk.ReadToEnd(), @"\s+");
-            Debug.Log(hexNumbers);
-            for (int i = 0; i < Constants.gridSizeX; i++)
-            {
-                for (int j = 0; j < Constants.gridSizeY; j++)
-                {
-                    array[i, j] = Int32.Parse(hexNumbers[Constants.gridSizeY * i + j]);
-                    kingdomArray[i, j] = Int32.Parse(kingdomNumbers[Constants.gridSizeY * i + j]);
-                }
-            }
-
-            GenerateGrid();
-
-        }
+        GenerateGrid();
     }
 
     private void UpdateBorders() 
