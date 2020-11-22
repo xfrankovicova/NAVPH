@@ -62,6 +62,7 @@ public class GridGenerator : EditorWindow
         }
     }
 
+
     private int[,] array = new int[Constants.gridSizeX, Constants.gridSizeY];
     private int[,] kingdomArray = new int[Constants.gridSizeX, Constants.gridSizeY];
     private GameObject grid;

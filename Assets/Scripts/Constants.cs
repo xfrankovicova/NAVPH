@@ -6,7 +6,9 @@ using UnityEngine;
 public static class Constants
 {
     public const int gridSizeX = 40;
-    public const int gridSizeY = 25;
+    public const int gridSizeY = 25; 
+    public const int battleMapSizeX = 30;
+    public const int battleMapSizeY = 20;
 
     public static Dictionary<SoldiersType, SoldierStats> soldierDictionary = new Dictionary<SoldiersType, SoldierStats>() {
         { SoldiersType.Pesant, new SoldierStats(20, 0, 10, 10, 20, 5, 60, 0, 1, 8, 25) },
@@ -25,6 +27,14 @@ public static class Constants
         { Hextypes.Forrest, 4f},
         { Hextypes.Mine, 7f},
         { Hextypes.Field, 3f}
+    };
+
+    public static Dictionary<BattleHextypes, float> costToEnterBattle = new Dictionary<BattleHextypes, float>() {
+        { BattleHextypes.Water, Mathf.Infinity},
+        { BattleHextypes.Grassland, 1f},
+        { BattleHextypes.Mountain_Big, Mathf.Infinity},
+        { BattleHextypes.Mountain_Small, Mathf.Infinity},
+        { BattleHextypes.Forrest, 4f}
     };
 
     public static List<Tuple<int, int>> nodeNeighboursEven = new List<Tuple<int, int>>() {
@@ -69,6 +79,11 @@ public static class Constants
 public enum Hextypes
 {
     Water, Grassland, City, Castle, Village, Mountain_Big, Mountain_Small, Forrest, Mine, Field
+}
+
+public enum BattleHextypes
+{
+    Water, Grassland, Mountain_Big, Mountain_Small, Forrest
 }
 
 public enum SoldiersType
