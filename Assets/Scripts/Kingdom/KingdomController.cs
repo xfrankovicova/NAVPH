@@ -40,16 +40,14 @@ public class KingdomController : MonoBehaviour
         if (key <= 0)
             return;
 
-        if (kingdoms.ContainsKey(key))
-        {
-            kingdoms[key].AddHex(hex);
-        }
-        else
+        if (!kingdoms.ContainsKey(key))
         {
             kingdoms.Add(key, new Kingdom(key));
             kingdoms[key].AddHex(hex);
             meh.Add(kingdoms[key]);
         }
+        
+        kingdoms[key].AddHex(hex);
     }
 
     public void UpdateBorders()
