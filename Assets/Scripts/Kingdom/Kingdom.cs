@@ -2,41 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Kingdom
 {
     [SerializeField]
+    public KingdomData data;
+    [SerializeField]
     private int kingdomId;
     public int KingdomId => kingdomId;
-
-    [SerializeField]
-    private List<Hexagon> hexes;
-
-    [SerializeField]
-    private Material borderMat;
-
-    public int KingdomSize => hexes.Count;
-
+    public int KingdomSize => data.hexes.Count;
     public Kingdom(int iKingdomId)
     {
         kingdomId = iKingdomId;
-        hexes = new List<Hexagon>();
-        borderMat = Resources.Load<Material>("Materials/mat" + kingdomId.ToString());
-        Debug.Log(borderMat);
+        data = Resources.Load<KingdomData>("Kingdoms/kingdom_" + kingdomId.ToString());
+            data.hexes = new List<Hexagon>();
+
+        Debug.Log("Kingdom #" + kingdomId + " hexes ");
+
+        foreach (var item in data.hexes)
+        {
+            Debug.Log("Kingdom #" + kingdomId + ". " + item.name);
+        }
+        data.borderMat = Resources.Load<Material>("Materials/mat" + kingdomId.ToString());
     }
 
     public void AddHex(Hexagon hex)
     {
-        if (!hexes.Contains(hex))
+        if (!data.hexes.Contains(hex))
         {
-            hexes.Add(hex);
+            data.hexes.Add(hex);
         }
     }
 
     public void UpdateBorder()
     {
-        foreach (var hex in hexes)
+        foreach (var hex in data.hexes)
         {
-            hex.SetBorderMat(borderMat);
+            hex.SetBorderMat(data.borderMat);
         }
     }
+}
+
+[CreateAssetMenu]
+public class KingdomData : ScriptableObject 
+{
+    public int id;
+
+    public List<Hexagon> hexes;
+
+    public Material borderMat;
+
+    public int overLordId;
+
+    public List<int> subjectsIds;
 }
