@@ -31,7 +31,7 @@ public class TownUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Initialize("Village", "King", "Kingdom", "100", "10", "Building1", "Building2", "Building3", "Building4", "Building5", "Building6");
+        Initialize("Town", "King", "Kingdom", "100", "10", "Building1", "Building2", "Building3", "Building4", "Building5", "Building6");
     }
 
     // Update is called once per frame
