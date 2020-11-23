@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: New Kingdom Data
   m_EditorClassIdentifier: Assembly-CSharp::KingdomData
+  kingdomName: 
+  id: 1
   hexes: []
   borderMat: {fileID: 0}
-  overLord: {fileID: 0}
+  overLordId: 0
+  subjectsIds: 

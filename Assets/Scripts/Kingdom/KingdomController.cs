@@ -59,12 +59,40 @@ public class KingdomController : MonoBehaviour
         }
     }
 
-    public void Update()
+    public Kingdom getKingdom(int iKingdomId) 
     {
-        Debug.Log(GetSuperKingdomId(1).ToString());
-        Debug.Log(GetSuperKingdomId(2).ToString());
-        Debug.Log(GetSuperKingdomId(3).ToString());
-        Debug.Log(GetSuperKingdomId(4).ToString());
+        if (kingdoms.ContainsKey(iKingdomId))
+        {
+            return kingdoms[iKingdomId];
+        }
+        else
+        {
+            Debug.LogError("No kingdom associated with id: " + iKingdomId.ToString());
+            return null;
+        }
+    }
+
+    [SerializeField]
+    GameObject KingdomTextHolder;
+
+    public void CreateKingdomNameUI(Vector3 position, string kingdomName, float angle) 
+    {
+        var go = Instantiate(KingdomTextHolder, position, Quaternion.Euler(0, 0, angle));
+        // go.transform.rotation = Quaternion.Euler(0, 0, angle);
+        go.GetComponent<clampCamera>().text.text = kingdomName;
+        go.GetComponent<clampCamera>().text.gameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    public void LoadKingdomsData() 
+    {
+        foreach (var item in kingdoms.Values)
+        {
+            item.LoadData();
+        }
+        foreach (var item in kingdoms.Values)
+        {
+            Debug.Log(item.data.id.ToString() + ": " + item.FullName);
+        }
     }
 
     public int GetSuperKingdomId(int iIkingdomId) 
