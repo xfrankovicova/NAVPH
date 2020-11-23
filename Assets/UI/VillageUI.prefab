@@ -1367,6 +1367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1904475299111516261}
+  - component: {fileID: 2288819159676786193}
   m_Layer: 5
   m_Name: VillageUI
   m_TagString: Untagged
@@ -1394,6 +1395,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2288819159676786193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904475299111516260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62397c090eedb004bb8d063d42a84ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeWindowBtn: {fileID: 565348240691058853}
+  villageName: {fileID: 1904475299354026771}
+  kingBtn: {fileID: 8134279680368628889}
+  kingName: {fileID: 1904475299013000245}
+  kingdomBtn: {fileID: 381447449863462024}
+  kingdomName: {fileID: 7704744964587149920}
+  wealth: {fileID: 1904475298664730535}
+  freeMen: {fileID: 1904475299691425064}
+  buildingBtn1: {fileID: 1904475298829863806}
+  buildingName1: {fileID: 1904475300002903084}
+  buildingBtn2: {fileID: 1904475299968687036}
+  buildingName2: {fileID: 1904475299320091025}
+  buildingBtn3: {fileID: 1904475299311676210}
+  buildingName3: {fileID: 1904475298319490831}
+  hireArmyBtn: {fileID: 4602048255328838215}
 --- !u!1 &1904475299278888050
 GameObject:
   m_ObjectHideFlags: 0
