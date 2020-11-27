@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 5946480327070730201}
   - component: {fileID: 5946480327070730200}
   m_Layer: 5
-  m_Name: BenefitInfo
+  m_Name: BenefitHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,6 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5946480328225084270}
   - component: {fileID: 5946480328225084265}
+  - component: {fileID: 576011551939934885}
   m_Layer: 5
   m_Name: BuildingItem
   m_TagString: Untagged
@@ -318,6 +319,25 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &576011551939934885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946480328225084271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b3a6af1275db94f97ea92d802bb832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingBtn: {fileID: 3608817348530422728}
+  buildingImage: {fileID: 5946480327390157333}
+  buildingName: {fileID: 6384365076199795556}
+  costItem: {fileID: 8972922610209366530}
+  costHolder: {fileID: 5946480328588520913}
+  benefitItem: {fileID: 7880941073907444994}
+  benefitHolder: {fileID: 5946480327070730201}
 --- !u!1 &5946480328588520918
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +349,7 @@ GameObject:
   - component: {fileID: 5946480328588520913}
   - component: {fileID: 5946480328588520912}
   m_Layer: 5
-  m_Name: CostInfo
+  m_Name: CostHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5946480328651411793}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -891,6 +911,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 522e0f4e7e94d0f4bb4c01c45da86778, type: 3}
+--- !u!1 &7880941073907444994 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5207544055187816823, guid: 522e0f4e7e94d0f4bb4c01c45da86778,
+    type: 3}
+  m_PrefabInstance: {fileID: 2673541262298262645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2985624918608850492 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 897695819365286473, guid: 522e0f4e7e94d0f4bb4c01c45da86778,
@@ -1056,6 +1082,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 522e0f4e7e94d0f4bb4c01c45da86778, type: 3}
+--- !u!1 &8972922610209366530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5207544055187816823, guid: 522e0f4e7e94d0f4bb4c01c45da86778,
+    type: 3}
+  m_PrefabInstance: {fileID: 3801829909751620469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4086895439048892732 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 897695819365286473, guid: 522e0f4e7e94d0f4bb4c01c45da86778,

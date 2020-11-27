@@ -19,6 +19,8 @@ public class CharacterUI : MonoBehaviour
     [SerializeField] private TMP_Text statistic2;
     [SerializeField] private TMP_Text statistic3;
     [SerializeField] private TMP_Text statistic4;
+    [SerializeField] private GameObject trait;
+    [SerializeField] private Transform traitsHolder;
 
 
     // Start is called before the first frame update

@@ -4294,6 +4294,8 @@ MonoBehaviour:
   statistic2: {fileID: 2272916077302830645}
   statistic3: {fileID: 2272916077338440994}
   statistic4: {fileID: 2272916076926338822}
+  trait: {fileID: 2272916077385125363}
+  traitsHolder: {fileID: 2272916078110833438}
 --- !u!1 &2272916078289196788
 GameObject:
   m_ObjectHideFlags: 0
@@ -4450,6 +4452,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f77473efb0b6b44f9cf3878e555449e, type: 3}
+--- !u!1 &2272916077385125363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2648139765361551219, guid: 2f77473efb0b6b44f9cf3878e555449e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4272526501127563904}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2272916077385125360 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2648139765361551216, guid: 2f77473efb0b6b44f9cf3878e555449e,
