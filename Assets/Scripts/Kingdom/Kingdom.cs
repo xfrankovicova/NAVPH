@@ -36,6 +36,7 @@ public class Kingdom
     }
 
     public string FullName => Title() + " of " + data.kingdomName;
+    public string Name => data.kingdomName;
 
     public Kingdom(int iKingdomId)
     {

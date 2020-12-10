@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 03f498d44bf07294a8f29a43efbd087d, type: 3}
   m_Name: kingdom_1
   m_EditorClassIdentifier: Assembly-CSharp::KingdomData
   kingdomName: Herford
@@ -91,4 +91,4 @@ MonoBehaviour:
   - {fileID: 0}
   borderMat: {fileID: 2100000, guid: 657eea1f33fc98c47837adbe7e2b9dbc, type: 2}
   overLordId: 0
-  subjectsIds: 040000000500000004000000
+  subjectsIds: 040000000500000006000000

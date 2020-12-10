@@ -50,6 +50,9 @@ public class GridController : MonoBehaviour
 
 
 		KingdomController.Instance.UpdateBorders();
+		KingdomController.Instance.LoadKingdomsData();
+		TurnController.Instance.SetUpController();
+
 		GeneratePathfindingGraph();
 	}
 

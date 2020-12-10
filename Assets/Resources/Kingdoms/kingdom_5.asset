@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: kingdom_5
   m_EditorClassIdentifier: Assembly-CSharp::KingdomData
   kingdomName: Blistering Hils
-  id: 0
+  id: 5
   hexes:
   - {fileID: 0}
   - {fileID: 0}

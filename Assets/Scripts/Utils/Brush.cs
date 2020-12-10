@@ -39,13 +39,39 @@ public class Brush : MonoBehaviour
         Debug.Log(_instance.ToString() + " created");
     }
 
+    [SerializeField]
     private DemoScene uiListener;
 
     private void Start()
     {
-        uiListener = GameObject.Find("Canvas").GetComponent<DemoScene>();
+    //    uiListener = GameObject.Find("Canvas").GetComponent<DemoScene>();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(2) && !uiListener.isUIOverride)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+            if (Physics.Raycast(ray, out hit))
+            {
+                Transform objectHit = hit.transform;
+                var hexagon = objectHit.gameObject.GetComponent<Hexagon>();
+                if (hexagon == null)
+                {
+                    Debug.Log(objectHit.name);
+                }
+                else
+                {
+                    var clickedKingdom = KingdomController.Instance.getKingdom(hexagon.CurrentKingdomId);
+                    Debug.Log("Clicked on " + clickedKingdom.FullName);
+                }
+
+                // Do something with the object that was hit by the raycast.
+            }
+        }
+
+    }
 
 }
