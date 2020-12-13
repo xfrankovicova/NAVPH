@@ -26,16 +26,12 @@ public class TownUI : MonoBehaviour
     [SerializeField] private TMP_Text buildingName5;
     [SerializeField] private Button   buildingBtn6;
     [SerializeField] private TMP_Text buildingName6;
-    [SerializeField] private Button   buildingBtn7;
-    [SerializeField] private TMP_Text buildingName7;
-    [SerializeField] private Button   buildingBtn8;
-    [SerializeField] private TMP_Text buildingName8;
-    [SerializeField] private Button   hireArmyBtn;
+    [SerializeField] private Button hireArmyBtn;
 
     // Start is called before the first frame update
     void Start()
     {
-        Initialize("Village", "King", "Kingdom", "100", "10", "Building1", "Building2", "Building3", "Building4", "Building5", "Building6", "Building7", "Building8");
+        Initialize("Town", "King", "Kingdom", "100", "10", "Building1", "Building2", "Building3", "Building4", "Building5", "Building6");
     }
 
     // Update is called once per frame
@@ -45,8 +41,8 @@ public class TownUI : MonoBehaviour
     }
 
     private void Initialize(string townName, string kingName, string kingdomName, string wealth, string freeMen,
-                        string buildingName1, string buildingName2, string buildingName3, string buildingName4,
-                        string buildingName5, string buildingName6, string buildingName7, string buildingName8)
+                            string buildingName1, string buildingName2, string buildingName3, 
+                            string buildingName4, string buildingName5, string buildingName6)
     {
         this.townName.text = townName;
         this.kingName.text = kingName;
@@ -59,8 +55,6 @@ public class TownUI : MonoBehaviour
         this.buildingName4.text = buildingName4; 
         this.buildingName5.text = buildingName5;
         this.buildingName6.text = buildingName6;
-        this.buildingName7.text = buildingName7;
-        this.buildingName8.text = buildingName8;
     }
 
     private void CloseWindow()
