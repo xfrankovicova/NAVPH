@@ -15,6 +15,9 @@ public class Character : MonoBehaviour
     [SerializeField]
     private Kingdom kingdom;
 
+    private List<Attribute> traits;
+    public List<Attribute> Traits => traits;
+
     private string Title()
     {
         string title = "";
@@ -84,6 +87,11 @@ public class CharacterData : ScriptableObject
     public KingdomData land;
 
     public List<int> subjectsIds;
+    public List<string> possiblePseudonyms;
+
+    public int strength;
+    public int inteligence;
+    public int charisma;
 
     public CharacterData(int i) 
     {

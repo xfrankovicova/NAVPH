@@ -44,7 +44,7 @@ public class Brush : MonoBehaviour
 
     private void Start()
     {
-    //    uiListener = GameObject.Find("Canvas").GetComponent<DemoScene>();
+     //   uiListener = GameObject.Find("Canvas").GetComponent<DemoScene>();
     }
 
     private void Update()
@@ -65,7 +65,7 @@ public class Brush : MonoBehaviour
                 else
                 {
                     var clickedKingdom = KingdomController.Instance.getKingdom(hexagon.CurrentKingdomId);
-                    Debug.Log("Clicked on " + clickedKingdom.FullName);
+                    Debug.Log("Clicked on " + clickedKingdom.FullName + " #" + clickedKingdom.data.id);
                 }
 
                 // Do something with the object that was hit by the raycast.

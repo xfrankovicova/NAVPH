@@ -3,7 +3,12 @@ guid: 0404138ba64be3a4680d73a1ed8515f1
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - data: {fileID: 11400000, guid: ccbc6e08e1ff83f4b970a0161e6a7ca5, type: 2}
+  - hexPrefab: {instanceID: 0}
+  - gridPrefab: {instanceID: 0}
+  - collumnHolder: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

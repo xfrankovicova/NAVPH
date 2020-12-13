@@ -22,17 +22,21 @@ public class CharacterUI : MonoBehaviour
     [SerializeField] private GameObject trait;
     [SerializeField] private Transform traitsHolder;
 
-
+    public void Initialize() 
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
         Initialize("Edric", "40", "King", "Kingdom", "Overlord", "5", "6", "7", "8");
+        closeWindowBtn.onClick.RemoveAllListeners();
+        closeWindowBtn.onClick.AddListener(CloseWindow);
     }
 
     // Update is called once per frame
     void Update()
     {
-        closeWindowBtn.onClick.AddListener(CloseWindow);
     }
 
     private void Initialize(string characterName, string age, string title, string kingdomName, string overlordName,

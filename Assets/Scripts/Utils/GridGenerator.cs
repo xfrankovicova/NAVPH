@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using UnityScript.Steps;
 using System;
 
-
+[ExecuteAlways]
 public class GridGenerator : EditorWindow
 {
     [MenuItem("Custom/GenerateGrid %g")]
@@ -22,7 +22,6 @@ public class GridGenerator : EditorWindow
         gridPrefab = Resources.Load<GameObject>("GridGenerator/Grid");
         collumnHolder = Resources.Load<GameObject>("GridGenerator/Collumn");
         data = Resources.Load<MapData>("GameState");
-
         grid = GameObject.FindGameObjectWithTag("Main grid");
         if (grid == null)
         {
@@ -61,9 +60,21 @@ public class GridGenerator : EditorWindow
             Debug.Log("Updateing borders");
             UpdateBorders();
         }
+
+        if (GUILayout.Button("Update KID"))
+        {
+            Debug.Log("Updateing KID");
+            UpdateKingdomsId();
+        }
+
+        if (GUILayout.Button("Debug"))
+        {
+            Debug.Log("debig");
+            DebugMapKingdomsIDs();
+        }
     }
 
-    private MapData data;
+    [SerializeField] private MapData data;
     private GameObject grid;
 
     [SerializeField] private GameObject hexPrefab;
@@ -127,6 +138,34 @@ public class GridGenerator : EditorWindow
         }
         Debug.Log(data.mapTypes);
         Debug.Log(data.mapKingdoms);
+    }
+
+    public void UpdateKingdomsId() 
+    {
+        for (int i = 0; i < grid.transform.childCount; i++)
+        {
+            var column = grid.transform.GetChild(i);
+            for (int j = 0; j < column.transform.childCount; j++)
+            {
+                var hex = column.transform.GetChild(j).GetComponent<Hexagon>();
+                Debug.Log(data.mapKingdoms[i, j].ToString());
+                hex.setKID(data.mapKingdoms[i, j]);
+            }
+        }
+    }
+
+    public void DebugMapKingdomsIDs()
+    {
+        string s = "\n";
+        for (int i = 0; i < Constants.gridSizeX; i++)
+        {
+            for (int j = 0; j < Constants.gridSizeY; j++)
+            {
+                s += data.mapKingdoms[i, j].ToString() + " ";
+            }
+            s += '\n';
+        }
+        Debug.Log(s);
     }
 
     public void LoadGrid() 

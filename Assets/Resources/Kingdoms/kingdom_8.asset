@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f498d44bf07294a8f29a43efbd087d, type: 3}
   m_Name: kingdom_8
   m_EditorClassIdentifier: Assembly-CSharp::KingdomData
-  kingdomName: 
+  kingdomName: Duksburg
   id: 0
   hexes:
   - {fileID: 0}

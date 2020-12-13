@@ -26,6 +26,10 @@ public class Hexagon : MonoBehaviour
     [SerializeField]
     private int _kingdomId = -1;
 
+    public void setKID(int i) {
+        _kingdomId = i;
+    }
+
     [SerializeField]
     private int currentKingdomId = -1;
 
