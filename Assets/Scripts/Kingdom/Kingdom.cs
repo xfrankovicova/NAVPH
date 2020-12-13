@@ -110,6 +110,23 @@ public class Kingdom
         float angle = Vector3.Angle(targetDir, start.transform.forward);
         Debug.Log(FullName + " " + angle.ToString());
         KingdomController.Instance.CreateKingdomNameUI(v, FullName, angle - 90f);
+        GetMiddle();
+    }
+
+    public void GetMiddle() 
+    {
+        var x = 0;
+        var y = 0;
+        foreach (var item in data.hexes)
+        {
+            x += item.X;
+            y += item.Y;
+        }
+
+        x /= data.hexes.Count;
+        y /= data.hexes.Count;
+
+        Debug.Log(FullName + " Middle hex is: [" + x + "," + y + "] " + (GridController.Instance.Grid[x, y].CurrentKingdomId == kingdomId).ToString());
     }
 
     public void DrawLine(Vector3 start, Vector3 end)

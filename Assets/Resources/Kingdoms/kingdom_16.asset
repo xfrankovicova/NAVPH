@@ -12,9 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f498d44bf07294a8f29a43efbd087d, type: 3}
   m_Name: kingdom_16
   m_EditorClassIdentifier: 
-  kingdomName: 
-  id: 0
-  hexes: []
-  borderMat: {fileID: 0}
-  overLordId: 0
+  kingdomName: Eastfold
+  id: 16
+  hexes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  borderMat: {fileID: 2100000, guid: 57719e363b6431b489554df0598ee953, type: 2}
+  overLordId: 3
   subjectsIds: 

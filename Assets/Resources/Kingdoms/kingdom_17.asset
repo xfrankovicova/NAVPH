@@ -12,9 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f498d44bf07294a8f29a43efbd087d, type: 3}
   m_Name: kingdom_17
   m_EditorClassIdentifier: 
-  kingdomName: 
-  id: 0
-  hexes: []
-  borderMat: {fileID: 0}
-  overLordId: 0
+  kingdomName: Leif's pass
+  id: 17
+  hexes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  borderMat: {fileID: 2100000, guid: dfbf157544c949d459ffa8fb05f019d1, type: 2}
+  overLordId: 3
   subjectsIds: 

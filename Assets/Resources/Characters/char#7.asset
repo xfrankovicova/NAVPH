@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: char#7
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  id: 0
-  characterName: 
+  id: 7
+  characterName: Turan
   pseudonym: 
   overLordId: 0
-  land: {fileID: 0}
-  subjectsIds: 
+  land: {fileID: 11400000, guid: 01e0a50eef27d204e813a14caa9f91dc, type: 2}
+  subjectsIds: 08000000090000000a0000000b000000
   possiblePseudonyms: []
   strength: 0
   inteligence: 0

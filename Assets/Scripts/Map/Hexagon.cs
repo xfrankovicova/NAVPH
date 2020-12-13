@@ -13,7 +13,16 @@ public class Hexagon : MonoBehaviour
     private Hextypes currentHexType;
 
     [SerializeField]
-    private GameObject hex;
+    private GameObject terainHex;
+
+    [SerializeField]
+    private GameObject potiticalHex;
+
+    public void TurnPoliticalOn(bool t = true) 
+    {
+        terainHex.SetActive(!t);
+        potiticalHex.SetActive(t);
+    }
 
     [SerializeField]
     private int x;
@@ -44,18 +53,21 @@ public class Hexagon : MonoBehaviour
 
     void Start()
     {
+        potiticalHex = Instantiate(KingdomController.Instance.polHex, transform);
+        potiticalHex.tag = "PoliticalHex";
+        potiticalHex.SetActive(false);
 //        currentHexType = Hextypes.Water;
-        if (hex == null)
+        if (terainHex == null)
         {
             for (int i = 0; i < transform.childCount; i++)
             {
                 var g = transform.GetChild(0).gameObject;
-                if (g.tag != "Border")
+                if (g.tag != "Border" && g.tag != "PoliticalHex")
                 {
                     DestroyImmediate(g);
                 }
             }
-            hex = Instantiate(Resources.Load<GameObject>("GridGenerator/Hexagons/" + currentHexType.ToString()), this.transform);
+            terainHex = Instantiate(Resources.Load<GameObject>("GridGenerator/Hexagons/" + currentHexType.ToString()), this.transform);
         }
         if (currentKingdomId == -1)
         {
@@ -76,13 +88,13 @@ public class Hexagon : MonoBehaviour
         currentHexType = type;
         _hexType = type;
         currentKingdomId = _kingdomId = iKingdomId;
-        DestroyImmediate(hex);
+        DestroyImmediate(terainHex);
         var v = Resources.Load<GameObject>("GridGenerator/Hexagons/" + currentHexType.ToString());
         if (v == null)
         {
             v = Resources.Load<GameObject>("GridGenerator/Hexagons/Error" );
         }
-        hex = Instantiate(v, this.transform);
+        terainHex = Instantiate(v, this.transform);
         name = "Hex [" + x.ToString() + ", " + y.ToString() + "]";
         Debug.Log(name + "type: " + type.ToString() + "currentType: " + currentHexType.ToString());
 
@@ -104,12 +116,12 @@ public class Hexagon : MonoBehaviour
         if (currentHexType != _hexType)
         {
             currentHexType = _hexType;
-            DestroyImmediate(hex);
+            DestroyImmediate(terainHex);
             var j = transform.childCount;
             for (int i = 0; i < j; i++)
             {
                 var g = transform.GetChild(0).gameObject;
-                if (g.tag != "Border")
+                if (g.tag != "Border" && g.tag != "PoliticalHex")
                 {
                     DestroyImmediate(g);
                 }
@@ -120,7 +132,7 @@ public class Hexagon : MonoBehaviour
             {
                 v = Resources.Load<GameObject>("GridGenerator/Hexagons/Error");
             }
-            hex = Instantiate(v, this.transform);
+            terainHex = Instantiate(v, this.transform);
         }
         if (currentKingdomId != _kingdomId)
         {

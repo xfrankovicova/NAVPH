@@ -17,4 +17,8 @@ MonoBehaviour:
   pseudonym: the Wranic
   overLordId: 1
   land: {fileID: 11400000, guid: 5e60a77835497534caa0b80635654e37, type: 2}
-  subjectsIds: 
+  subjectsIds: 0500000006000000
+  possiblePseudonyms: []
+  strength: 0
+  inteligence: 0
+  charisma: 0

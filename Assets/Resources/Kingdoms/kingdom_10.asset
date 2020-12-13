@@ -12,9 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f498d44bf07294a8f29a43efbd087d, type: 3}
   m_Name: kingdom_10
   m_EditorClassIdentifier: Assembly-CSharp::KingdomData
-  kingdomName: 
-  id: 0
-  hexes: []
-  borderMat: {fileID: 0}
-  overLordId: 0
-  subjectsIds: 
+  kingdomName: Gullham
+  id: 10
+  hexes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  borderMat: {fileID: 2100000, guid: 12dbde759f5852f4e9d672da8ce32d18, type: 2}
+  overLordId: 2
+  subjectsIds: 0e000000

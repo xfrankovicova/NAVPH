@@ -6,6 +6,8 @@ public class KingdomController : MonoBehaviour
 {
     private static KingdomController _instance;
 
+    public GameObject polHex;
+     
     public Settlement s;
     public static KingdomController Instance
     {
@@ -92,6 +94,10 @@ public class KingdomController : MonoBehaviour
         foreach (var item in kingdoms.Values)
         {
             Debug.Log(item.data.id.ToString() + ": " + item.FullName);
+        }
+        foreach (var item in kingdoms.Values)
+        {
+            item.GetMiddle();
         }
     }
 

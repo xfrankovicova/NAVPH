@@ -12,9 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f498d44bf07294a8f29a43efbd087d, type: 3}
   m_Name: kingdom_9
   m_EditorClassIdentifier: Assembly-CSharp::KingdomData
-  kingdomName: 
-  id: 0
-  hexes: []
-  borderMat: {fileID: 0}
-  overLordId: 0
+  kingdomName: Last Island
+  id: 9
+  hexes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  borderMat: {fileID: 2100000, guid: a50dbadd703bd5a41a17e21b3ba55b70, type: 2}
+  overLordId: 2
   subjectsIds: 

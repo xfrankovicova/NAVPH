@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: char#15
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  id: 0
-  characterName: 
+  id: 15
+  characterName: Torstein
   pseudonym: 
-  overLordId: 0
-  land: {fileID: 0}
-  subjectsIds: 
+  overLordId: 14
+  land: {fileID: 11400000, guid: 359e8781df6a67045947ccb641ed70ec, type: 2}
+  subjectsIds: 12000000
   possiblePseudonyms: []
   strength: 0
   inteligence: 0

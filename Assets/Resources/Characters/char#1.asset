@@ -17,4 +17,8 @@ MonoBehaviour:
   pseudonym: the Terrible
   overLordId: 0
   land: {fileID: 11400000, guid: cdb3ae916194f13459cfc1bcdeb7a44a, type: 2}
-  subjectsIds: 0200000003000000
+  subjectsIds: 020000000300000004000000
+  possiblePseudonyms: []
+  strength: 0
+  inteligence: 0
+  charisma: 0

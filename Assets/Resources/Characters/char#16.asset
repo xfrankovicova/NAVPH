@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: char#16
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  id: 0
-  characterName: 
+  id: 16
+  characterName: Ivar
   pseudonym: 
-  overLordId: 0
-  land: {fileID: 0}
+  overLordId: 14
+  land: {fileID: 11400000, guid: 6f6fb55a9a3ff52448a6e57e636cc440, type: 2}
   subjectsIds: 
   possiblePseudonyms: []
   strength: 0
