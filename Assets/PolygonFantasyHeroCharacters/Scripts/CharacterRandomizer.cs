@@ -13,6 +13,7 @@ namespace PsychoticLab
 
     public class CharacterRandomizer : MonoBehaviour
     {
+        public GameObject copyHolder;
         [Header("Demo Settings")]
         public bool repeatOnPlay = false;
         public float shuffleSpeed = 0.7f;
@@ -146,8 +147,8 @@ namespace PsychoticLab
             }
 
             // if repeat on play is checked in the inspector, repeat the randomize method based on the shuffle speed, also defined in the inspector
-            if (repeatOnPlay)
-                InvokeRepeating("Randomize", shuffleSpeed, shuffleSpeed);
+            //if (repeatOnPlay)
+            //    InvokeRepeating("Randomize", shuffleSpeed, shuffleSpeed);
         }
 
         private void Update()
@@ -183,6 +184,14 @@ namespace PsychoticLab
 
         public void OnClicRandom() 
         {
+            //while (copyHolder.transform.childCount != 0)
+            //{
+            ////    Destroy(copyHolder.transform.GetChild(0));
+            //}
+            for (int i = 0; i < copyHolder.transform.childCount; i++)
+            {
+                Destroy(copyHolder.transform.GetChild(i));
+            }
             Randomize();
         }
 
@@ -515,6 +524,9 @@ namespace PsychoticLab
         {
             // enable item
             go.SetActive(true);
+
+            var v = Instantiate(go, copyHolder.transform);
+            Debug.Log(go.name);
 
             // add item to the enabled items list
             enabledObjects.Add(go);

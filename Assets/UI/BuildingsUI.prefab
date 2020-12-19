@@ -162,8 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeWindowBtn: {fileID: 8145195486419014925}
-  building: {fileID: 5946480328225084271, guid: 2f85e64ffb2811c4ba830ea1142df880,
-    type: 3}
+  buildingItem: {fileID: 7395175866646546838}
   buildingHolder: {fileID: 7835989748771404278}
 --- !u!1 &7835989748571512398
 GameObject:
@@ -784,6 +783,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f85e64ffb2811c4ba830ea1142df880, type: 3}
+--- !u!1 &7395175866646546838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5946480328225084271, guid: 2f85e64ffb2811c4ba830ea1142df880,
+    type: 3}
+  m_PrefabInstance: {fileID: 3757925267079043833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7395175866646546839 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5946480328225084270, guid: 2f85e64ffb2811c4ba830ea1142df880,

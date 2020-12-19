@@ -229,7 +229,7 @@ public class GridController : MonoBehaviour
 	}
 	public Vector3 TileCoordToWorldCoord(int x, int y)
 	{
-		return new Vector3(grid[x,y].gameObject.transform.position.x, 0, grid[x, y].gameObject.transform.position.z);
+		return new Vector3(grid[x,y].gameObject.transform.position.x, 0.2f, grid[x, y].gameObject.transform.position.z);
 	}
 
 	#endregion

@@ -20,11 +20,29 @@ public class BattleHexagon : MonoBehaviour
     [SerializeField]
     private int y;
 
+    public int X => x;
+    public int Y => y;
+
     [SerializeField]
     private Dictionary<int, int> dic;
 
+    private GameObject unitOnTile;
 
-    public BattleHextypes HexType => _hexType; 
+    public BattleHextypes HexType => _hexType;
+    public bool HasUnit()
+    {
+        return (unitOnTile != null);
+    }
+
+    public void EntetTileWithunit(GameObject unit)
+    {
+        unitOnTile = unit;
+    }
+
+    public void UnitLeaveTile()
+    {
+        unitOnTile = null;
+    }
 
     void Start()
     {
@@ -64,18 +82,18 @@ public class BattleHexagon : MonoBehaviour
         Debug.Log(name + "type: " + type.ToString() + "currentType: " + currentHexType.ToString());
 
     }
-    /*
+    
     void OnMouseUp()
     {
-        Debug.Log("Click!");
+        Debug.Log(x+"Click!"+y);
 
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
         Debug.Log("Generating!");
-        GridController.Instance.GeneratePathTo(x, y);
+        BattleController.Instance.GeneratePathTo(x, y);
     }
-    */
+    
 
     public void SetHextype(BattleHextypes type)
     {

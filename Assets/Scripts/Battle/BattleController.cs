@@ -19,7 +19,9 @@ public class BattleController : MonoBehaviour
 
 	public BattleHexagon[,] Grid => grid;
 
-	private BattleHexagon[,] grid = new BattleHexagon[Constants.battleMapSizeX, Constants.battleMapSizeY];
+    public GameObject SelectedUnit { get => selectedUnit; set => selectedUnit = value; }
+
+    private BattleHexagon[,] grid = new BattleHexagon[Constants.battleMapSizeX, Constants.battleMapSizeY];
 
 
 	private void Awake()
@@ -47,7 +49,7 @@ public class BattleController : MonoBehaviour
 			}
 		}
 
-	//	GeneratePathfindingGraph();
+		GeneratePathfindingGraph();
 	}
 
 	public BattleHexagon GetRandomHex()
@@ -58,31 +60,31 @@ public class BattleController : MonoBehaviour
 		return grid[x, y];
 	}
 
-	/*
+	
 		#region Pathfinding
 
-		Node[,] graph;
+		BattleNode[,] graph;
 
 		void GeneratePathfindingGraph()
 		{
 			// Initialize the array
-			graph = new Node[Constants.gridSizeX, Constants.gridSizeY];
+			graph = new BattleNode[Constants.battleMapSizeX, Constants.battleMapSizeY];
 
-			// Initialize a Node for each spot in the array
-			for (int x = 0; x < Constants.gridSizeX; x++)
+			// Initialize a BattleNode for each spot in the array
+			for (int x = 0; x < Constants.battleMapSizeX; x++)
 			{
-				for (int y = 0; y < Constants.gridSizeY; y++)
+				for (int y = 0; y < Constants.battleMapSizeY; y++)
 				{
-					graph[x, y] = new Node();
+					graph[x, y] = new BattleNode();
 					graph[x, y].x = x;
 					graph[x, y].y = y;
 				}
 			}
 
 			// Now that all the nodes exist, calculate their neighbours
-			for (int x = 0; x < Constants.gridSizeX; x++)
+			for (int x = 0; x < Constants.battleMapSizeX; x++)
 			{
-				for (int y = 0; y < Constants.gridSizeY; y++)
+				for (int y = 0; y < Constants.battleMapSizeY; y++)
 				{
 					var v = graph[x, y].GetNeighboursIndexes();
 					foreach (var item in v)
@@ -91,13 +93,15 @@ public class BattleController : MonoBehaviour
 			}
 		}
 
-		public GameObject selectedUnit;
+		[SerializeField]
+		private GameObject selectedUnit;
 		public bool UnitCanEnterTile(int x, int y)
 		{
 
 			// We could test the unit's walk/hover/fly type against various
 			// terrain flags here to see if they are allowed to enter the tile.
-
+			if (grid[x, y].HasUnit())
+				return false;
 			return (grid[x, y].HexType != BattleHextypes.Water);
 		}
 
@@ -125,7 +129,7 @@ public class BattleController : MonoBehaviour
 		public void GeneratePathTo(int x, int y)
 		{
 			// Clear out our unit's old path.
-			selectedUnit.GetComponent<Unit>().currentPath = null;
+			selectedUnit.GetComponent<BattleUnit>().currentPath = null;
 
 			if (UnitCanEnterTile(x, y) == false)
 			{
@@ -133,18 +137,18 @@ public class BattleController : MonoBehaviour
 				return;
 			}
 
-			Dictionary<Node, float> dist = new Dictionary<Node, float>();
-			Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
+			Dictionary<BattleNode, float> dist = new Dictionary<BattleNode, float>();
+			Dictionary<BattleNode, BattleNode> prev = new Dictionary<BattleNode, BattleNode>();
 
 			// Setup the "Q" -- the list of nodes we haven't checked yet.
-			List<Node> unvisited = new List<Node>();
+			List<BattleNode> unvisited = new List<BattleNode>();
 
-			Node source = graph[
-								selectedUnit.GetComponent<Unit>().tileX,
-								selectedUnit.GetComponent<Unit>().tileY
+			BattleNode source = graph[
+								selectedUnit.GetComponent<BattleUnit>().tileX,
+								selectedUnit.GetComponent<BattleUnit>().tileY
 								];
 
-			Node target = graph[
+			BattleNode target = graph[
 								x,
 								y
 								];
@@ -156,7 +160,7 @@ public class BattleController : MonoBehaviour
 			// we don't know any better right now. Also, it's possible
 			// that some nodes CAN'T be reached from the source,
 			// which would make INFINITY a reasonable value
-			foreach (Node v in graph)
+			foreach (BattleNode v in graph)
 			{
 				if (v != source)
 				{
@@ -169,10 +173,10 @@ public class BattleController : MonoBehaviour
 
 			while (unvisited.Count > 0)
 			{
-				// "u" is going to be the unvisited node with the smallest distance.
-				Node u = null;
+				// "u" is going to be the unvisited BattleNode with the smallest distance.
+				BattleNode u = null;
 
-				foreach (Node possibleU in unvisited)
+				foreach (BattleNode possibleU in unvisited)
 				{
 					if (u == null || dist[possibleU] < dist[u])
 					{
@@ -187,7 +191,7 @@ public class BattleController : MonoBehaviour
 
 				unvisited.Remove(u);
 
-				foreach (Node v in u.neighbours)
+				foreach (BattleNode v in u.neighbours)
 				{
 					//float alt = dist[u] + u.DistanceTo(v);
 					float alt = dist[u] + CostToEnterTile(u.x, u.y, v.x, v.y);
@@ -208,9 +212,9 @@ public class BattleController : MonoBehaviour
 				return;
 			}
 
-			List<Node> currentPath = new List<Node>();
+			List<BattleNode> currentPath = new List<BattleNode>();
 
-			Node curr = target;
+			BattleNode curr = target;
 
 			// Step through the "prev" chain and add it to our path
 			while (curr != null)
@@ -224,13 +228,13 @@ public class BattleController : MonoBehaviour
 
 			currentPath.Reverse();
 
-			selectedUnit.GetComponent<Unit>().currentPath = currentPath;
+			selectedUnit.GetComponent<BattleUnit>().currentPath = currentPath;
 		}
 
 		public Vector3 TileCoordToWorldCoord(int x, int y)
 		{
-			return new Vector3(grid[x, y].gameObject.transform.position.x, 0, grid[x, y].gameObject.transform.position.z);
+			return new Vector3(grid[x, y].gameObject.transform.position.x, grid[x, y].gameObject.transform.position.y + 0.2f, grid[x, y].gameObject.transform.position.z);
 		}
 
-		#endregion*/
+		#endregion
 }

@@ -60,6 +60,7 @@ public class BattleMapGenerator : MonoBehaviour
     private void GenerateBattleMap()
     {
         gridHolder = GameObject.Instantiate(gridPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        gridHolder.transform.position = new Vector3(-15, 5, 0);
         gridHolder.name = "Battle Grid";
         gridHolder.tag = "Main battle grid";
         grid = gridHolder;
