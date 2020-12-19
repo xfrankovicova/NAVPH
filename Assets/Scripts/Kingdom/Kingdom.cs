@@ -69,6 +69,16 @@ public class Kingdom
         }
     }
 
+    bool political = false;
+    public void ShowPoliticat() 
+    {
+        political = !political;
+        foreach (var hex in data.hexes)
+        {
+            hex.TurnPoliticalOn(political);
+        }
+    }
+
     public void LoadData() 
     {
         if (data.overLordId != 0)

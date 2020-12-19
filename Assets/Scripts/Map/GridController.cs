@@ -18,6 +18,9 @@ public class GridController : MonoBehaviour
     private GameObject gridHolder;
 
     public Hexagon[,] Grid => grid;
+	[SerializeField]
+	private GameObject selectedUnit;
+	public GameObject SelectedUnit { get => selectedUnit; set => selectedUnit = value; }
 
     private Hexagon[,] grid = new Hexagon[Constants.gridSizeX, Constants.gridSizeY];
 
@@ -88,13 +91,14 @@ public class GridController : MonoBehaviour
 		}
 	}
 
-	public GameObject selectedUnit;
 	public bool UnitCanEnterTile(int x, int y)
 	{
 
-		// We could test the unit's walk/hover/fly type against various
-		// terrain flags here to see if they are allowed to enter the tile.
-
+        // We could test the unit's walk/hover/fly type against various
+        // terrain flags here to see if they are allowed to enter the tile.
+        if (grid[x, y].HasUnit())
+			return false;
+        
 		return (grid[x, y].HexType != Hextypes.Water);
 	}
 
@@ -223,7 +227,6 @@ public class GridController : MonoBehaviour
 
 		selectedUnit.GetComponent<Unit>().currentPath = currentPath;
 	}
-
 	public Vector3 TileCoordToWorldCoord(int x, int y)
 	{
 		return new Vector3(grid[x,y].gameObject.transform.position.x, 0, grid[x, y].gameObject.transform.position.z);

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteAlways]
 public class PoliticalHexagon : MonoBehaviour
 {
-    private Material mat;
-
-    public void setMat() 
+    public void setMat(Material mat) 
     {
-        GetComponent<MeshRenderer>().materials[1] = mat;
+        Material[] materials = GetComponent<MeshRenderer>().materials;
+        materials[1] = mat;
+        GetComponent<MeshRenderer>().materials = materials;
     }
 }

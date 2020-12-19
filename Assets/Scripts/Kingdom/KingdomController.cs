@@ -79,10 +79,10 @@ public class KingdomController : MonoBehaviour
 
     public void CreateKingdomNameUI(Vector3 position, string kingdomName, float angle) 
     {
-        var go = Instantiate(KingdomTextHolder, position, Quaternion.Euler(0, 0, angle));
-        // go.transform.rotation = Quaternion.Euler(0, 0, angle);
-        go.GetComponent<clampCamera>().text.text = kingdomName;
-        go.GetComponent<clampCamera>().text.gameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
+        //var go = Instantiate(KingdomTextHolder, position, Quaternion.Euler(0, 0, angle));
+        //// go.transform.rotation = Quaternion.Euler(0, 0, angle);
+        //go.GetComponent<clampCamera>().text.text = kingdomName;
+        //go.GetComponent<clampCamera>().text.gameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     public void LoadKingdomsData() 

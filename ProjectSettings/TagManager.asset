@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Border
   - Main battle grid
+  - Main grid
+  - PoliticalHex
   layers:
   - Default
   - TransparentFX

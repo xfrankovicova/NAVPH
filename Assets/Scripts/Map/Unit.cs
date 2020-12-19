@@ -52,10 +52,14 @@ public class Unit : MonoBehaviour {
 	// Advances our pathfinding progress by one tile.
 	void AdvancePathing() {
 		if(currentPath==null)
+		{
 			return;
-
-		if(remainingMovement <= 0)
+		}
+		if (remainingMovement <= 0) 
+		{
+			Debug.Log("MovementDone");
 			return;
+		}
 
 		// Teleport us to our correct "current" position, in case we
 		// haven't finished the animation yet.
@@ -63,18 +67,29 @@ public class Unit : MonoBehaviour {
 
 		// Get cost from current tile to next tile
 		remainingMovement -= GridController.Instance.CostToEnterTile(currentPath[0].x, currentPath[0].y, currentPath[1].x, currentPath[1].y );
-		
-		// Move us to the next tile in the sequence
+
+        // Move us to the next tile in the sequence
+
+		GridController.Instance.Grid[tileX, tileY].UnitLeaveTile();
 		tileX = currentPath[1].x;
 		tileY = currentPath[1].y;
-		
+		GridController.Instance.Grid[tileX, tileY].EntetTileWithunit(this.gameObject);
 		// Remove the old "current" tile from the pathfinding list
 		currentPath.RemoveAt(0);
-		
-		if(currentPath.Count == 1) {
+		foreach (var item in GridController.Instance.Grid[tileX, tileY].GetNeighbours())
+		{
+			if (item.HasUnit())
+			{
+				Debug.Log(name + " on tile [" + tileX + "," + tileY + "] enters fight with unit on tile [" + item.X + "," + +item.Y + "]");
+			}
+		}
+
+		if (currentPath.Count == 1) {
 			// We only have one tile left in the path, and that tile MUST be our ultimate
 			// destination -- and we are standing on it!
 			// So let's just clear our pathfinding info.
+
+			Debug.Log("MovementDone");
 			currentPath = null;
 		}
 	}

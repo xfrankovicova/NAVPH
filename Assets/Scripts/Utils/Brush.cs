@@ -65,6 +65,7 @@ public class Brush : MonoBehaviour
                 else
                 {
                     var clickedKingdom = KingdomController.Instance.getKingdom(hexagon.CurrentKingdomId);
+                    clickedKingdom.ShowPoliticat();
                     Debug.Log("Clicked on " + clickedKingdom.FullName + " #" + clickedKingdom.data.id);
                 }
 

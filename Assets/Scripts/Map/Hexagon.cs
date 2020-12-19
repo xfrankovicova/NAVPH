@@ -13,21 +13,17 @@ public class Hexagon : MonoBehaviour
     private Hextypes currentHexType;
 
     [SerializeField]
-    private GameObject terainHex;
+    private GameObject hex;
 
     [SerializeField]
-    private GameObject potiticalHex;
-
-    public void TurnPoliticalOn(bool t = true) 
-    {
-        terainHex.SetActive(!t);
-        potiticalHex.SetActive(t);
-    }
+    private GameObject politicalHex;
 
     [SerializeField]
     private int x;
     [SerializeField]
     private int y;
+
+    private GameObject unitOnTile;
 
     public int X => x;
     public int Y => y;
@@ -35,7 +31,8 @@ public class Hexagon : MonoBehaviour
     [SerializeField]
     private int _kingdomId = -1;
 
-    public void setKID(int i) {
+    public void setKID(int i)
+    {
         _kingdomId = i;
     }
 
@@ -45,29 +42,48 @@ public class Hexagon : MonoBehaviour
     [SerializeField]
     private GameObject[] borders = new GameObject[6];
 
-    public Hextypes HexType { get { return _hexType; }
+    public Hextypes HexType
+    {
+        get { return _hexType; }
     }
 
-    public int CurrentKingdomId { get => currentKingdomId;}
+    public int CurrentKingdomId { get => currentKingdomId; }
 
+    public bool HasUnit() 
+    {
+        return (unitOnTile != null);
+    }
+
+    public void EntetTileWithunit(GameObject unit) 
+    {
+        unitOnTile = unit;
+    }
+
+    public void UnitLeaveTile() 
+    {
+        unitOnTile = null;
+    }
+
+    public void TurnPoliticalOn(bool t = true) 
+    {
+        politicalHex.SetActive(t);
+        hex.SetActive(!t);
+    }
 
     void Start()
     {
-        potiticalHex = Instantiate(KingdomController.Instance.polHex, transform);
-        potiticalHex.tag = "PoliticalHex";
-        potiticalHex.SetActive(false);
-//        currentHexType = Hextypes.Water;
-        if (terainHex == null)
+        //        currentHexType = Hextypes.Water;
+        if (hex == null)
         {
             for (int i = 0; i < transform.childCount; i++)
             {
                 var g = transform.GetChild(0).gameObject;
-                if (g.tag != "Border" && g.tag != "PoliticalHex")
+                if (g.tag != "Border")
                 {
                     DestroyImmediate(g);
                 }
             }
-            terainHex = Instantiate(Resources.Load<GameObject>("GridGenerator/Hexagons/" + currentHexType.ToString()), this.transform);
+            hex = Instantiate(Resources.Load<GameObject>("GridGenerator/Hexagons/" + currentHexType.ToString()), this.transform);
         }
         if (currentKingdomId == -1)
         {
@@ -81,20 +97,30 @@ public class Hexagon : MonoBehaviour
         //    UpdateBorders();
     }
 
-    public void Initialize(Hextypes type, int iKingdomId, int Xcord, int Ycord) 
+    public void Initialize(Hextypes type, int iKingdomId, int Xcord, int Ycord)
     {
         x = Xcord;
         y = Ycord;
         currentHexType = type;
         _hexType = type;
         currentKingdomId = _kingdomId = iKingdomId;
-        DestroyImmediate(terainHex);
+        DestroyImmediate(hex);
         var v = Resources.Load<GameObject>("GridGenerator/Hexagons/" + currentHexType.ToString());
         if (v == null)
         {
-            v = Resources.Load<GameObject>("GridGenerator/Hexagons/Error" );
+            v = Resources.Load<GameObject>("GridGenerator/Hexagons/Error");
         }
-        terainHex = Instantiate(v, this.transform);
+        hex = Instantiate(v, this.transform);
+        v = null;
+        v = Resources.Load<GameObject>("GridGenerator/Hexagons/PoliticalHex");
+        if (v == null)
+        {
+            v = Resources.Load<GameObject>("GridGenerator/Hexagons/Error");
+        }
+        politicalHex = Instantiate(v, this.transform);
+        politicalHex.tag = "Border";
+        politicalHex.SetActive(false);
+
         name = "Hex [" + x.ToString() + ", " + y.ToString() + "]";
         Debug.Log(name + "type: " + type.ToString() + "currentType: " + currentHexType.ToString());
 
@@ -116,12 +142,12 @@ public class Hexagon : MonoBehaviour
         if (currentHexType != _hexType)
         {
             currentHexType = _hexType;
-            DestroyImmediate(terainHex);
+            DestroyImmediate(hex);
             var j = transform.childCount;
             for (int i = 0; i < j; i++)
             {
                 var g = transform.GetChild(0).gameObject;
-                if (g.tag != "Border" && g.tag != "PoliticalHex")
+                if (g.tag != "Border")
                 {
                     DestroyImmediate(g);
                 }
@@ -132,7 +158,7 @@ public class Hexagon : MonoBehaviour
             {
                 v = Resources.Load<GameObject>("GridGenerator/Hexagons/Error");
             }
-            terainHex = Instantiate(v, this.transform);
+            hex = Instantiate(v, this.transform);
         }
         if (currentKingdomId != _kingdomId)
         {
@@ -174,7 +200,7 @@ public class Hexagon : MonoBehaviour
         }
     }
 
-    public List<Hexagon> GetNeighbours() 
+    public List<Hexagon> GetNeighbours()
     {
         var v = (x % 2 == 0) ? Constants.neighboursEven : Constants.neighboursOdd;
 
@@ -192,7 +218,11 @@ public class Hexagon : MonoBehaviour
         return result;
     }
 
-    public void UpdateBorders() {
+    public void UpdateBorders()
+    {
+        politicalHex.SetActive(true);
+        politicalHex.GetComponent<PoliticalHexagon>().setMat(borders[0].GetComponent<MeshRenderer>().material);
+        politicalHex.SetActive(false);
         if (currentKingdomId == -1)
         {
             borders[0].SetActive(false);
@@ -206,7 +236,7 @@ public class Hexagon : MonoBehaviour
         var v = (x % 2 == 0) ? Constants.neighboursEven : Constants.neighboursOdd;
         foreach (var item in v)
         {
-            if (!(item.Key.Item1 + x < 0 || item.Key.Item1 + x >= Constants.gridSizeX || item.Key.Item2 +y < 0 || item.Key.Item2 +y>= Constants.gridSizeY))
+            if (!(item.Key.Item1 + x < 0 || item.Key.Item1 + x >= Constants.gridSizeX || item.Key.Item2 + y < 0 || item.Key.Item2 + y >= Constants.gridSizeY))
             {
                 if (GridController.Instance.Grid[x + item.Key.Item1, y + item.Key.Item2].currentKingdomId == currentKingdomId)
                     borders[item.Value].SetActive(false);
@@ -220,8 +250,11 @@ public class Hexagon : MonoBehaviour
         }
     }
 
-    public void SetBorderMat(Material mat) 
+    public void SetBorderMat(Material mat)
     {
+        politicalHex.SetActive(true);
+        politicalHex.GetComponent<PoliticalHexagon>().setMat(mat);
+        politicalHex.SetActive(false);
         borders[0].GetComponent<MeshRenderer>().material = mat;
         borders[1].GetComponent<MeshRenderer>().material = mat;
         borders[2].GetComponent<MeshRenderer>().material = mat;
